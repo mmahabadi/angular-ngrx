@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { loadBasket } from './basket/+state/basket.actions';
+import { selectBasketCount } from './basket/+state/basket.selectors';
+import { loadDishes } from './dishes/+state/dishes.actions';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'restaurant';
+export class AppComponent implements OnInit {
+  store = inject(Store);
+  totalItemsInBasket$ = this.store.select(selectBasketCount);
+
+  ngOnInit() {
+    this.store.dispatch(loadDishes());
+    this.store.dispatch(loadBasket());
+  }
 }
