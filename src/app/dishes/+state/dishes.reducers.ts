@@ -7,7 +7,7 @@ import {
 } from './dishes.actions';
 import { DishStore } from '../../../models/dish.store';
 
-const initialState: DishStore = {
+export const initialState: DishStore = {
   dishes: [],
   loading: false,
   error: null,

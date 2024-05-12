@@ -11,7 +11,7 @@ import {
   updateBasketItem,
 } from './basket.actions';
 
-const initialState: BasketStore = {
+export const initialState: BasketStore = {
   items: [],
   loading: false,
   error: null,
